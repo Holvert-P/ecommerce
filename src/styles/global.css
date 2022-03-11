@@ -1,4 +1,10 @@
 body {
-	margin: 0;
-	font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+}
+li,
+button,
+input [type="button"],
+figure > img {
+  cursor: pointer;
 }

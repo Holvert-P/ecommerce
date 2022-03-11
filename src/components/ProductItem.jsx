@@ -1,23 +1,32 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/ProductItem.scss";
 import addCart from "../assets/icons/bt_add_to_cart.svg";
-const ProductItem = () => {
-  const [cart, setCart] = useState([]);
-  const handleClick = () => {
-    setCart([]);
+import appContext from "../context/AppContext";
+import noImage from "../assets/noImage.png";
+
+const ProductItem = ({ product }) => {
+  const { price, images, title, category } = product;
+
+  const { addToCart } = useContext(appContext);
+
+  const handleClick = (item) => {
+    addToCart(item);
   };
   return (
     <div className="ProductItem">
-      <img
-        src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        alt=""
-      />
+      <span className="category-product">{category?.name}</span>
+      <img src={images?.[0] !== "" ? images?.[0] : noImage} alt={title} />
       <div className="product-info">
         <div>
-          <p>$120,00</p>
+          <p>
+            {Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(price)}
+          </p>
           <p>Bike</p>
         </div>
-        <figure onClick={handleClick}>
+        <figure onClick={() => handleClick(product)}>
           <img src={addCart} alt="" />
         </figure>
       </div>
