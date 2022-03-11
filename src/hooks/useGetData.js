@@ -2,8 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const useGetData = (API) => {
-  const [products, setProducts] = useState([""]);
-
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     getData();
   }, []);
